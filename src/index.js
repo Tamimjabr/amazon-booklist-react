@@ -18,21 +18,23 @@ const secondBook={
 function BookList() {
   return (
   <section className='booklist'>
-    <Book img={firstBook.img} title={firstBook.title} author={firstBook.author.toUpperCase()}/>
+    <Book img={firstBook.img} title={firstBook.title} author={firstBook.author.toUpperCase()}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio animi dignissimos, consequuntur quo id et. Voluptatem tenetur earum quam quos!</Book>
     <Book img={secondBook.img} title={secondBook.title} author={secondBook.author.toUpperCase()}/>
   </section>
   )
 }
 
-
+// ! props.children is like slots in webcomponents
 
 const Book =(props)=> {
+  const {img,title,author}= props
   console.log(props)
   return(
     <article className='book'>
-     <img src={props.img} alt="a bok"/>
-     <h1>{props.title}</h1>
-     <p>{props.author}</p>
+     <img src={img} alt="a bok"/>
+     <h1>{title}</h1>
+     <p>{author}</p>
+     {props.children}
     </article>
   )
 }
