@@ -4,22 +4,39 @@ import ReactDom from "react-dom";
 import "./index.css";
 
 // setup vars
-const firstBook={
+const books=[{
+  id:1,
   img:"https://m.media-amazon.com/images/I/81eB+7+CkUL._AC_UL480_FMwebp_QL65_.jpg",
   title:'I Love You to the Moon and Back',
   author:'Amelia Hepworth'
-}
-const secondBook={
+},
+{
+  id:2,
   img:"https://m.media-amazon.com/images/I/61VsXzoAfDL._AC_UL480_FMwebp_QL65_.jpg",
   title:'What If?: Serious Scientific Answers to Absurd Hypothetical Questions',
   author:'Randall Munroe'
-}
+},{
+  id:3,
+  img:"https://images-na.ssl-images-amazon.com/images/I/51Z30WGFVhL._SX486_BO1,204,203,200_.jpg",
+  title:'Where\'s Spot?' ,
+  author:'Eric Hill',
+  description:'A lift-the-flap tale in which Spot\'s mum searches everywhere for little Spot.'
+}]
 
 function BookList() {
+  const newBooks = books.map(book=>{
+    if(!book.description){
+      return (
+        <Book key={book.id} img={book.img} title={book.title} author={book.title}></Book>
+      )
+    }else{
+      return <Book key={book.id} img={book.img} title={book.title} author={book.title}><p>{book.description}</p></Book>
+    }
+
+  })
   return (
   <section className='booklist'>
-    <Book img={firstBook.img} title={firstBook.title} author={firstBook.author.toUpperCase()}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio animi dignissimos, consequuntur quo id et. Voluptatem tenetur earum quam quos!</Book>
-    <Book img={secondBook.img} title={secondBook.title} author={secondBook.author.toUpperCase()}/>
+    {newBooks}
   </section>
   )
 }
@@ -34,7 +51,7 @@ const Book =(props)=> {
      <img src={img} alt="a bok"/>
      <h1>{title}</h1>
      <p>{author}</p>
-     {props.children}
+     {props.children?props.children:'no description'}
     </article>
   )
 }
